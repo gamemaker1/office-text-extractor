@@ -26,11 +26,15 @@ npm install git+https://github.com/gamemaker1/office-text-extractor
 ## Usage
 
 ```js
+// Importing the library:
+
 // CommonJS import
-const extractText = require('office-text-extractor');
+const { extractText } = require('office-text-extractor');
 
 // ES import
 import extractText from 'office-text-extractor';
+
+// Extracting text:
 
 // Async-await way
 const text = await extractText('path/to/file');
