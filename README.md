@@ -29,7 +29,7 @@ npm install git+https://github.com/gamemaker1/office-text-extractor
 // Importing the library:
 
 // CommonJS import
-const { extractText } = require('office-text-extractor');
+const extractText = require('office-text-extractor');
 
 // ES import
 import extractText from 'office-text-extractor';
