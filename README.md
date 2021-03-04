@@ -2,7 +2,7 @@
 
 Yet another library to extract text from MS Office (`docx`, `pptx`, `xlsx`) and PDF (`pdf`) files.
 
-## How this is different from other text exctraction tools
+## How this is different from other text extraction tools
 
 - Parses file based on mime type, not file extension
 - Does not spawn a child process to use a tool installed on the device
