@@ -2,11 +2,36 @@
 
 Yet another library to extract text from MS Office (`docx`, `pptx`, `xlsx`) and PDF (`pdf`) files.
 
-## How this is different from other text extraction tools
+## Similar libraries
+
+There are a other great libraries that do the same job and have inspired this project, such as:
+
+- [`any-text`](https://github.com/abhinaba-ghosh/any-text)
+- [`officeparser`](https://github.com/harshankur/officeParser)
+- [`textract`](https://www.npmjs.com/package/textract)
+
+### How this is different from other text extraction tools
 
 - Parses file based on mime type, not file extension
 - Does not spawn a child process to use a tool installed on the device
 - Reads and returns text from file if it is a simple text file
+
+## Libraries used
+
+This module uses some amazing existing libraries that perform better than the ones that originally existed in this module, and are therefore used instead:
+
+- [`pdf-parse`](https://www.npmjs.com/package/pdf-parse), for parsing PDF files
+- [`xlsx`](https://www.npmjs.com/package/xlsx), for parsing MS Excel files
+
+A big thank you to the contributors of these projects.
+
+This module also uses:
+
+- [`xml2js`](https://www.npmjs.com/package/xml2js) - to convert the MS Office XML files into JSON
+- [`js-yaml`](https://www.npmjs.com/package/js-yaml) - to convert JSON into YAML
+- [`file-type`](https://www.npmjs.com/package/file-type) - to detect the mime type of files
+- [`decompress`](https://www.npmjs.com/package/decompress) - to unzip files
+- [`read-chunk`](https://www.npmjs.com/package/read-chunk) - to read chunks of data from large files
 
 ## Installation
 
@@ -16,11 +41,7 @@ To use this in an npm project, simply type in:
 npm install office-text-extractor
 ```
 
-**Notes:**
-
-- No support for browser environments yet. If you want to add support, please feel free to [open a pull request](https://github.com/gamemaker1/office-text-extractor/pulls).
-- To parse PDFs, this module uses the amazing `pdf-parse` npm package.
-- To parse Excel files, this module uses the amazing `xlsx` npm package.
+**There is no support for browser environments yet. If you want to add support, please feel free to [open a pull request](https://github.com/gamemaker1/office-text-extractor/pulls).**
 
 ## Usage
 
