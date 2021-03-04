@@ -1,0 +1,33 @@
+{
+  "name": "office-text-extractor",
+  "version": "1.0.0",
+  "description": "Yet another library to extract text from MS Office and PDF files",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gamemaker1/office-text-extractor.git"
+  },
+  "author": "gamemaker1",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gamemaker1/office-text-extractor/issues"
+  },
+  "homepage": "https://github.com/gamemaker1/office-text-extractor#readme",
+  "dependencies": {
+    "decompress": "^4.2.1",
+    "file-type": "^16.2.0",
+    "fs-extra": "^9.1.0",
+    "js-yaml": "^4.0.0",
+    "pdf-parse": "^1.1.1",
+    "read-chunk": "^3.2.0",
+    "xlsx": "^0.16.9",
+    "xml2js": "^0.4.23"
+  },
+  "devDependencies": {
+    "prettier": "^2.2.1"
+  }
+}
