@@ -4,7 +4,7 @@ Yet another library to extract text from MS Office (`docx`, `pptx`, `xlsx`) and 
 
 ## Similar libraries
 
-There are a other great libraries that do the same job and have inspired this project, such as:
+There are other great libraries that do the same job and have inspired this project, such as:
 
 - [`any-text`](https://github.com/abhinaba-ghosh/any-text)
 - [`officeparser`](https://github.com/harshankur/officeParser)
@@ -23,8 +23,6 @@ This module uses some amazing existing libraries that perform better than the on
 - [`pdf-parse`](https://www.npmjs.com/package/pdf-parse), for parsing PDF files
 - [`xlsx`](https://www.npmjs.com/package/xlsx), for parsing MS Excel files
 
-A big thank you to the contributors of these projects.
-
 This module also uses:
 
 - [`xml2js`](https://www.npmjs.com/package/xml2js) - to convert the MS Office XML files into JSON
@@ -32,6 +30,8 @@ This module also uses:
 - [`file-type`](https://www.npmjs.com/package/file-type) - to detect the mime type of files
 - [`decompress`](https://www.npmjs.com/package/decompress) - to unzip files
 - [`read-chunk`](https://www.npmjs.com/package/read-chunk) - to read chunks of data from large files
+
+A big thank you to the contributors of these projects.
 
 ## Installation
 
