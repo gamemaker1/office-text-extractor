@@ -13,13 +13,12 @@ Yet another library to extract text from MS Office (`docx`, `pptx`, `xlsx`) and 
 To use this in an npm project, simply type in:
 
 ```sh
-npm install git+https://github.com/gamemaker1/office-text-extractor
+npm install office-text-extractor
 ```
 
 **Notes:**
 
-- NPM Publish in progress
-- No support for browser environments yet. If you want to add support, please feel free to open a pull request.
+- No support for browser environments yet. If you want to add support, please feel free to [open a pull request](https://github.com/gamemaker1/office-text-extractor/pulls).
 - To parse PDFs, this module uses the amazing `pdf-parse` npm package.
 - To parse Excel files, this module uses the amazing `xlsx` npm package.
 
@@ -52,7 +51,7 @@ extractText('path/to/file');
 
 ## Todos
 
-- Publish to NPM (in progress)
+- Add typescript typings
 - Add tests
 - Add callback support
 - Add support for Open Office formats

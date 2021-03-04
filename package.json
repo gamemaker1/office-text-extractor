@@ -1,11 +1,11 @@
 {
   "name": "office-text-extractor",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "Yet another library to extract text from MS Office and PDF files",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\""
   },
   "repository": {
     "type": "git",
