@@ -128,15 +128,15 @@ test('test parsing for docx files', async (t) => {
 })
 
 test('test parsing for pptx files', async (t) => {
-  t.true(await testDocx())
+  t.true(await testPptx())
 })
 
 test('test parsing for xlsx files', async (t) => {
-  t.true(await testDocx())
+  t.true(await testXlsx())
 })
 
 test('test parsing for pdf files', async (t) => {
-  t.true(await testDocx())
+  t.true(await testPdf())
 })
 
 test('test parsing for files with unknown mime', async (t) => {
