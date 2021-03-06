@@ -1,5 +1,7 @@
 # Text Extraction from MS Office and PDF files
 
+[![Node.js Tests](https://github.com/gamemaker1/office-text-extractor/actions/workflows/node-tests.yml/badge.svg)](https://github.com/gamemaker1/office-text-extractor/actions/workflows/node-tests.yml)
+
 Yet another library to extract text from MS Office (`docx`, `pptx`, `xlsx`) and PDF (`pdf`) files.
 
 ## Similar libraries
