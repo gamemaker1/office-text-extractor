@@ -70,13 +70,21 @@ extractText('path/to/file');
   })
 ```
 
+## Tests
+
+To run tests (using Ava), type the following:
+
+```sh
+npm test
+```
+
 ## Todos
 
-- Add typescript typings
-- Add tests
-- Add callback support
-- Add support for Open Office formats
-- Add support for browser environments
+- [x] ~~Add tests~~
+- [ ] Add typescript typings
+- [ ] Add callback support
+- [ ] Add support for Open Office formats
+- [ ] Add support for browser environments
 
 If you want to help out, please do [open a pull request](https://github.com/gamemaker1/office-text-extractor/pulls).
 
