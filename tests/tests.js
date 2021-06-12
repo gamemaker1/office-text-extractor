@@ -28,8 +28,7 @@ async function testDocx() {
   // Extract text from the test docx file
   let extractedText = await extractText(`${__dirname}/files/Test.docx`)
   // The expected text from the docx file
-  let expectedText =
-    'A BIG HEADING\nNormal text\nAnd more text here, and more text there\nThere’s a nice table below\nWhat else can we do?\nI guess this is the end, thank you.\nTable Heading A\nTable Heading B\nTable Heading C\nTable Heading D\nRow 1A\nRow 1B\nRow 1C\nRow 1D\nRow 2A\nRow 2B\nRow 2C\nRow 2D'
+  let expectedText = 'A BIG HEADING\n\n\n\nNormal text\n\n\n\nAnd more text here, and more text there\n\n\n\nThere’s a nice table below\n\n\n\nTable Heading A\n\nTable Heading B\n\nTable Heading C\n\nTable Heading D\n\nRow 1A\n\nRow 1B\n\nRow 1C\n\nRow 1D\n\nRow 2A\n\nRow 2B\n\nRow 2C\n\nRow 2D\n\n\n\nWhat else can we do?\n\n\n\nI guess this is the end, thank you.\n\n' 
 
   // Check if the two match
   if (expectedText === extractedText) {

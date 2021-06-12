@@ -24,6 +24,7 @@ This module uses some amazing existing libraries that perform better than the on
 
 - [`pdf-parse`](https://www.npmjs.com/package/pdf-parse), for parsing PDF files
 - [`xlsx`](https://www.npmjs.com/package/xlsx), for parsing MS Excel files
+- [`mammoth`](https://www.npmjs.com/package/mammoth), for parsing MS Word files
 
 This module also uses:
 
@@ -53,7 +54,7 @@ npm install office-text-extractor
 // CommonJS import
 const extractText = require('office-text-extractor');
 
-// ES import
+// ES/TS import
 import extractText from 'office-text-extractor';
 
 // Extracting text:
