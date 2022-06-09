@@ -33,7 +33,7 @@
   "dependencies": {
     "decompress": "^4.2.1",
     "file-type": "^16.5.0",
-    "fs-extra": "^9.1.0",
+    "fs-extra": "^10.0.0",
     "js-yaml": "^4.1.0",
     "mammoth": "^1.4.17",
     "pdf-parse": "^1.1.1",
