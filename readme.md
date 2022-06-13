@@ -52,24 +52,24 @@ npm install office-text-extractor
 // Importing the library:
 
 // CommonJS import
-const extractText = require('office-text-extractor');
+const extractText = require('office-text-extractor')
 
 // ES/TS import
-import extractText from 'office-text-extractor';
+import extractText from 'office-text-extractor'
 
 // Extracting text:
 
 // Async-await way
-const text = await extractText('path/to/file');
-console.log(text);
+const text = await extractText('path/to/file')
+console.log(text)
 
 // Promise way
-extractText('path/to/file');
+extractText('path/to/file')
   .then((text) => {
-    console.log(text);
+    console.log(text)
   })
-  .catch((err) => {
-    console.error(err);
+  .catch((error) => {
+    console.error(error)
   })
 ```
 

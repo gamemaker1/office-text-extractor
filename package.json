@@ -1,60 +1,83 @@
 {
-  "name": "office-text-extractor",
-  "version": "1.5.0",
-  "description": "Yet another library to extract text from MS Office and PDF files",
-  "keywords": [
-    "text-extraction",
-    "get-text",
-    "parser",
-    "ms-office",
-    "ms-excel",
-    "ms-word",
-    "ms-powerpoint",
-    "xlsx",
-    "docx",
-    "pptx",
-    "pdf"
-  ],
-  "main": "lib/index.js",
-  "types": "types/index.d.ts",
-  "scripts": {
-    "test": "ava"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gamemaker1/office-text-extractor.git"
-  },
-  "author": "gamemaker1",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/gamemaker1/office-text-extractor/issues"
-  },
-  "homepage": "https://github.com/gamemaker1/office-text-extractor#readme",
-  "dependencies": {
-    "decompress": "^4.2.1",
-    "file-type": "^16.5.0",
-    "fs-extra": "^10.0.0",
-    "js-yaml": "^4.1.0",
-    "mammoth": "^1.4.17",
-    "pdf-parse": "^1.1.1",
-    "read-chunk": "^3.2.0",
-    "xlsx": "^0.16.9",
-    "xml2js": "^0.4.23"
-  },
-  "devDependencies": {
-    "ava": "3.15.0",
-    "np": "^7.5.0",
-    "prettier": "^2.3.1"
-  },
-  "ava": {
-    "files": [
-      "tests/**/*"
-    ],
-    "failFast": true,
-    "verbose": true,
-    "nodeArguments": [
-      "--trace-deprecation",
-      "--napi-modules"
-    ]
-  }
+	"name": "office-text-extractor",
+	"version": "1.5.0",
+	"description": "Yet another library to extract text from MS Office and PDF files",
+	"keywords": [
+		"text-extraction",
+		"get-text",
+		"parser",
+		"ms-office",
+		"ms-excel",
+		"ms-word",
+		"ms-powerpoint",
+		"xlsx",
+		"docx",
+		"pptx",
+		"pdf"
+	],
+	"author": "Vedant K <https://github.com/gamemaker1>",
+	"license": "ISC",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/gamemaker1/office-text-extractor.git"
+	},
+	"bugs": {
+		"url": "https://github.com/gamemaker1/office-text-extractor/issues"
+	},
+	"homepage": "https://github.com/gamemaker1/office-text-extractor#readme",
+	"main": "source/index.js",
+	"types": "source/index.d.ts",
+	"files": [
+		"license.md",
+		"readme.md",
+		"package.json",
+		"source/"
+	],
+	"type": "module",
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"dependencies": {
+		"decompress": "^4.2.1",
+		"file-type": "^17.1.2",
+		"js-yaml": "^4.1.0",
+		"mammoth": "^1.4.21",
+		"pdf-parse": "^1.1.1",
+		"read-chunk": "^4.0.2",
+		"xlsx": "^0.18.5",
+		"xml2js": "^0.4.23"
+	},
+	"devDependencies": {
+		"ava": "4.3.0",
+		"np": "^7.6.1",
+		"prettier": "^2.6.2",
+		"xo": "0.50.0"
+	},
+	"ava": {
+		"files": [
+			"tests/**/*"
+		],
+		"failFast": true,
+		"verbose": true,
+		"nodeArguments": [
+			"--trace-deprecation",
+			"--napi-modules"
+		]
+	},
+	"prettier": {
+		"semi": false,
+		"useTabs": true,
+		"singleQuote": true,
+		"bracketSpacing": true,
+		"trailingComma": "all",
+		"proseWrap": "always",
+		"endOfLine": "lf"
+	},
+	"xo": {
+		"prettier": true,
+		"rules": {
+			"captalized-comments": 0,
+			"no-await-in-loop": 0
+		}
+	}
 }
