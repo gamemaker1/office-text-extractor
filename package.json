@@ -58,11 +58,7 @@
 			"tests/**/*"
 		],
 		"failFast": true,
-		"verbose": true,
-		"nodeArguments": [
-			"--trace-deprecation",
-			"--napi-modules"
-		]
+		"verbose": true
 	},
 	"prettier": {
 		"semi": false,

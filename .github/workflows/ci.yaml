@@ -9,6 +9,9 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14, 15, 16, 17, 18]
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v2
@@ -16,10 +19,10 @@ jobs:
         uses: pnpm/action-setup@v2.0.1
         with:
           version: latest
-      - name: Setup Node 16
+      - name: Setup Node ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
-          node-version: 16
+          node-version: ${{ matrix.node-version }}
           registry-url: 'https://registry.npmjs.org/'
           cache: 'pnpm'
       - name: Install dependencies
