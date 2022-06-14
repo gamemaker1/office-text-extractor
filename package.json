@@ -1,6 +1,6 @@
 {
 	"name": "office-text-extractor",
-	"version": "1.5.0",
+	"version": "2.0.0",
 	"description": "Yet another library to extract text from MS Office and PDF files",
 	"keywords": [
 		"text-extraction",
