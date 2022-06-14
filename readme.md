@@ -1,4 +1,4 @@
-# <div class="center"> <code>office-text-extractor</code> </div>
+# <div align="center"> `office-text-extractor` </div>
 
 <div align="center">
 	<img alt="Github Workflow Status" src="https://img.shields.io/github/workflow/status/gamemaker1/office-text-extractor/CI"/>
@@ -65,12 +65,6 @@ To use this in an Node project, install it using `npm`/`pnpm`/`yarn`:
 > yarn add office-text-extractor
 ```
 
-> **Warning**
->
-> There is no support for browser environments yet. If you want to add support,
-> please feel free to
-> [open a pull request](https://github.com/gamemaker1/office-text-extractor/pulls).
-
 ## Usage
 
 ```js
@@ -85,6 +79,12 @@ extractText('path/to/file')
 	.then((text) => console.log(text))
 	.catch((error) => console.error(error))
 ```
+
+> **Note**
+>
+> There is no support for browser environments yet. If you want to add support,
+> please feel free to
+> [open a pull request](https://github.com/gamemaker1/office-text-extractor/pulls).
 
 ## License
 
