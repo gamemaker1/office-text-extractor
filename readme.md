@@ -3,9 +3,10 @@
 <div align="center">
 	<img alt="Github Workflow Status" src="https://img.shields.io/github/workflow/status/gamemaker1/office-text-extractor/CI"/>
 	<img alt="GitHub Stars" src="https://img.shields.io/github/stars/gamemaker1/office-text-extractor"/>
-
-  <p>Yet another library to extract text from MS Office (`docx`, `pptx`, `xlsx`) and PDF (`pdf`) files.</p>
 </div>
+<br>
+
+> Yet another library to extract text from MS Office (`docx`, `pptx`, `xlsx`) and PDF (`pdf`) files.
 
 ## Similar projects
 
