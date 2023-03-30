@@ -18,7 +18,7 @@ jobs:
       - name: Setup PNPM
         uses: pnpm/action-setup@v2.0.1
         with:
-          version: latest
+          version: 7
       - name: Setup Node ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
@@ -40,7 +40,7 @@ jobs:
       - name: Setup PNPM
         uses: pnpm/action-setup@v2.0.1
         with:
-          version: latest
+          version: 8
       - name: Setup Node 18
         uses: actions/setup-node@v2
         with:
