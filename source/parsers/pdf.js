@@ -1,4 +1,4 @@
-// Source/parsers/pdf.js
+// source/parsers/pdf.js
 // The text extracter for PDF files.
 
 import { readFile } from 'node:fs/promises'
