@@ -38,30 +38,20 @@
 		"node": ">= 14.16"
 	},
 	"scripts": {
-		"test": "xo && ava"
+		"test": "tsc && xo"
 	},
 	"dependencies": {
-		"decompress": "^4.2.1",
-		"file-type": "^17.1.2",
-		"js-yaml": "^4.1.0",
-		"mammoth": "^1.4.21",
-		"pdf-parse": "^1.1.1",
-		"read-chunk": "^4.0.2",
-		"xlsx": "^0.18.5",
-		"xml2js": "^0.4.23"
+		"file-type": "^18.2.1",
+		"got": "12.6.0",
+		"pdf-parse": "1.1.1"
 	},
 	"devDependencies": {
-		"ava": "4.3.0",
-		"np": "^7.6.1",
-		"prettier": "^2.6.2",
-		"xo": "0.50.0"
-	},
-	"ava": {
-		"files": [
-			"tests/**/*"
-		],
-		"failFast": true,
-		"verbose": true
+		"@types/node": "18.15.11",
+		"np": "^7.7.0",
+		"prettier": "^2.8.7",
+		"tsx": "3.12.7",
+		"typescript": "5.0.3",
+		"xo": "0.53.1"
 	},
 	"prettier": {
 		"semi": false,
@@ -75,8 +65,10 @@
 	"xo": {
 		"prettier": true,
 		"rules": {
-			"captalized-comments": 0,
-			"no-await-in-loop": 0
+			"capitalized-comments": 0,
+			"no-await-in-loop": 0,
+			"@typescript-eslint/no-unsafe-return": 0,
+			"@typescript-eslint/no-unsafe-call": 0
 		}
 	}
 }

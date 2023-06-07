@@ -1,0 +1,15 @@
+// tsconfig.json
+// The Typescript configuration for the project.
+
+{
+	"compilerOptions": {
+		"target": "es2020",
+		"module": "node16",
+		"noEmit": true,
+		"sourceMap": false,
+		"strict": true,
+		"strictNullChecks": true,
+		"esModuleInterop": true,
+		"moduleResolution": "node16"
+	}
+}
