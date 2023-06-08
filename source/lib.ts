@@ -1,7 +1,9 @@
 // source/lib.ts
 // The source code for the library.
 
-import { type Buffer } from 'node:buffer'
+import { Buffer } from 'node:buffer'
+import { fileTypeFromBuffer as getFileType } from 'file-type'
+import { readFile, fetchUrl } from './util.js'
 
 /**
  * A method of text extraction.
@@ -9,8 +11,8 @@ import { type Buffer } from 'node:buffer'
 export type InputType = 'buffer' | 'file' | 'url'
 export type ExtractionPayload = { type: InputType; input: string | Buffer }
 export type TextExtractionMethod = {
-	acceptedInputMethods: InputType[]
-	apply: (_: ExtractionPayload) => Promise<string>
+	mimes: string[]
+	apply: (_: Buffer) => Promise<string>
 }
 
 /**
@@ -38,14 +40,26 @@ export class TextExtractor {
 	 * @returns The extracted text as a simple string.
 	 */
 	extractText = async ({ input, type }: ExtractionPayload): Promise<string> => {
+		let preparedInput: Buffer
+		if (typeof input === 'string') {
+			if (type === 'file') preparedInput = await readFile(input)
+			else if (type === 'url') preparedInput = await fetchUrl(input)
+			else preparedInput = Buffer.from(input)
+		} else {
+			preparedInput = input
+		}
+
+		const mimeDetails = await getFileType(preparedInput)
+		if (!mimeDetails) return preparedInput.toString()
+
 		const extractor = this.methods.find((method) =>
-			method.acceptedInputMethods.includes(type),
+			method.mimes.includes(mimeDetails.mime),
 		)
 		if (!extractor?.apply) {
-			const message = `text-extractor: could not find a method to handle ${type} input`
+			const message = `text-extractor: could not find a method to handle ${mimeDetails.mime}`
 			throw new Error(message)
 		}
 
-		return extractor.apply({ input, type })
+		return extractor.apply(preparedInput)
 	}
 }

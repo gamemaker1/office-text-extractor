@@ -7,5 +7,5 @@ import { got as fetch } from 'got'
 
 export const readFile = async (filePath: string): Promise<Buffer> =>
 	read(filePath)
-export const fetchUrl = async (url: string): Promise<string> =>
-	fetch(url).text()
+export const fetchUrl = async (url: string): Promise<Buffer> =>
+	fetch(url).buffer()
