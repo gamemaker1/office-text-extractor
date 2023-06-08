@@ -41,6 +41,8 @@ export class PdfExtractor implements TextExtractionMethod {
 }
 
 /**
+ * We have to redefine this function to ensure that there are spaces between
+ * words in the output text.
  *
  * @param data The data stored in the PDF about the page.
  * @returns The text content on the page
@@ -59,6 +61,7 @@ const renderPage = async (data: unknown): Promise<string> => {
 		// @ts-expect-error todo: figure out the types
 		for (const item of textContent.items) {
 			if (!(lastY === item.transform[5] || !lastY)) text += '\n'
+			// The word + a space
 			text += (item.str as string) + ' '
 
 			lastY = item.transform[5] as string
