@@ -58,7 +58,6 @@ const renderPage = async (data: unknown): Promise<string> => {
 
 		// @ts-expect-error todo: figure out the types
 		for (const item of textContent.items) {
-			console.log(item)
 			if (!(lastY === item.transform[5] || !lastY)) text += '\n'
 			text += (item.str as string) + ' '
 

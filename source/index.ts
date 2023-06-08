@@ -15,3 +15,10 @@ export const getTextExtractor = async (): Promise<TextExtractor> => {
 
 	return textExtractor
 }
+
+export type {
+	InputType,
+	ExtractionPayload,
+	TextExtractionMethod,
+	TextExtractor,
+} from './lib.js'
