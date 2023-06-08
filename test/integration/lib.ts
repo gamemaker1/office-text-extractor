@@ -9,10 +9,11 @@ import { getTextExtractor, type InputType } from '../../source/index.js'
 
 const pdfFilePath = './test/fixtures/integration-test.pdf'
 const pdfTextPath = './test/fixtures/pdf-text.txt'
+const pdfUrl = ''
 const pdfBuffer = await readFile(pdfFilePath)
 const pdfContent = await readFile(pdfTextPath)
 
-const extractor = await getTextExtractor()
+const extractor = getTextExtractor()
 
 const macro = test.macro(
 	async (
@@ -30,3 +31,4 @@ const macro = test.macro(
 
 test('extracts text from pdf file', macro, pdfFilePath, 'file', pdfContent)
 test('extracts text from pdf buffer', macro, pdfBuffer, 'file', pdfContent)
+test('extracts text from url', macro, pdfUrl, 'file', pdfContent)
