@@ -8,7 +8,7 @@ import { PdfExtractor } from './parsers/pdf.js'
  * Create and returns a text extractor instance with the default extraction
  * methods.
  */
-export const getTextExtractor = async (): Promise<TextExtractor> => {
+export const getTextExtractor = (): TextExtractor => {
 	const textExtractor = new TextExtractor()
 	const methods = [new PdfExtractor()]
 	methods.map((method) => textExtractor.addMethod(method))
