@@ -5,18 +5,13 @@ import { type Buffer } from 'node:buffer'
 // @ts-expect-error There are no types for this package.
 import parsePdf from 'pdf-parse/lib/pdf-parse.js'
 
-import type {
-	ExtractionPayload,
-	InputType,
-	TextExtractionMethod,
-} from '../lib.js'
-import { readFile, fetchUrl } from '../util.js'
+import type { TextExtractionMethod } from '../lib.js'
 
 export class PdfExtractor implements TextExtractionMethod {
 	/**
 	 * The type(s) of input acceptable to this method.
 	 */
-	acceptedInputMethods: InputType[] = ['buffer', 'file', 'url']
+	mimes = ['application/pdf']
 
 	/**
 	 * Extract text from a PDF file if possible.
@@ -24,16 +19,9 @@ export class PdfExtractor implements TextExtractionMethod {
 	 * @param payload The input and its type.
 	 * @returns The text extracted from the input.
 	 */
-	apply = async ({ input, type }: ExtractionPayload): Promise<string> => {
-		let preparedInput: string | Buffer = input
-
-		if (typeof input === 'string') {
-			if (type === 'file') preparedInput = await readFile(input)
-			if (type === 'url') preparedInput = await fetchUrl(input)
-		}
-
+	apply = async (input: Buffer): Promise<string> => {
 		// Convert the PDF to text and return the text.
-		const parsedPdf = (await parsePdf(preparedInput, {
+		const parsedPdf = (await parsePdf(input, {
 			pagerender: renderPage,
 		})) as { text: string }
 		return parsedPdf.text

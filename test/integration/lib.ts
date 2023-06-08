@@ -31,5 +31,5 @@ const macro = test.macro(
 )
 
 test('extracts text from pdf file', macro, pdfFilePath, 'file', pdfContent)
-test('extracts text from pdf buffer', macro, pdfBuffer, 'file', pdfContent)
-test('extracts text from url', macro, pdfUrl, 'file', pdfContent)
+test('extracts text from pdf buffer', macro, pdfBuffer, 'buffer', pdfContent)
+test('extracts text from url', macro, pdfUrl, 'url', pdfContent)
