@@ -9,7 +9,8 @@ import { getTextExtractor, type InputType } from '../../source/index.js'
 
 const pdfFilePath = './test/fixtures/integration-test.pdf'
 const pdfTextPath = './test/fixtures/pdf-text.txt'
-const pdfUrl = ''
+const pdfUrl =
+	'https://raw.githubusercontent.com/gamemaker1/office-text-extractor/rewrite/test/fixtures/integration-test.pdf'
 const pdfBuffer = await readFile(pdfFilePath)
 const pdfContent = await readFile(pdfTextPath)
 
