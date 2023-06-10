@@ -40,6 +40,7 @@ export class TextExtractor {
 	 * @returns The extracted text as a simple string.
 	 */
 	extractText = async ({ input, type }: ExtractionPayload): Promise<string> => {
+		// Turn the input into a buffer containing the file's contents.
 		let preparedInput: Buffer
 		if (typeof input === 'string') {
 			if (type === 'file') preparedInput = await readFile(input)
@@ -49,9 +50,12 @@ export class TextExtractor {
 			preparedInput = input
 		}
 
+		// Check the mime type of the file. If there is no mime type, it's most
+		// likely a txt/csv files.
 		const mimeDetails = await getFileType(preparedInput)
 		if (!mimeDetails) return preparedInput.toString()
 
+		// Find the extractor that can handle that mime type, and call it.
 		const extractor = this.methods.find((method) =>
 			method.mimes.includes(mimeDetails.mime),
 		)

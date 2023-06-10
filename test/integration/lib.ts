@@ -19,6 +19,12 @@ const txtUrl =
 const txtBuffer = await readFile(txtFilePath)
 const txtContent = await readFile('./test/fixtures/text-txt.txt')
 
+const docFilePath = './test/fixtures/test-doc.docx'
+const docUrl =
+	'https://raw.githubusercontent.com/gamemaker1/office-text-extractor/rewrite/test/fixtures/test-doc.docx'
+const docBuffer = await readFile(docFilePath)
+const docContent = await readFile('./test/fixtures/text-doc.txt')
+
 const extractor = getTextExtractor()
 
 const macro = test.macro(
@@ -42,3 +48,7 @@ test('extracts text from pdf (url)', macro, pdfUrl, 'url', pdfContent)
 test('extracts text from txt (file)', macro, txtFilePath, 'file', txtContent)
 test('extracts text from txt (buffer)', macro, txtBuffer, 'buffer', txtContent)
 test('extracts text from txt (url)', macro, txtUrl, 'url', txtContent)
+
+test('extracts text from doc (file)', macro, docFilePath, 'file', docContent)
+test('extracts text from doc (buffer)', macro, docBuffer, 'buffer', docContent)
+test('extracts text from doc (url)', macro, docUrl, 'url', docContent)
