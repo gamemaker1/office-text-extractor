@@ -25,12 +25,13 @@
 		"url": "https://github.com/gamemaker1/office-text-extractor/issues"
 	},
 	"homepage": "https://github.com/gamemaker1/office-text-extractor#readme",
-	"exports": "./source/index.js",
-	"types": "./source/index.d.ts",
+	"exports": "./build/index.js",
 	"files": [
 		"license.md",
 		"readme.md",
 		"package.json",
+		"tsconfig.json",
+		"build/",
 		"source/"
 	],
 	"type": "module",
@@ -38,9 +39,10 @@
 		"node": ">= 16"
 	},
 	"scripts": {
+		"compile": "tsc",
 		"test": "run-s test:*",
-		"test:compile": "tsc",
-		"test:quality": "xo",
+		"test:compile": "tsc --noEmit",
+		"test:quality": "xo source/ test/",
 		"test:integration": "NODE_OPTIONS='--loader=tsx' ava"
 	},
 	"dependencies": {
