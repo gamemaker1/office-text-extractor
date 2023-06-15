@@ -1,6 +1,6 @@
 {
 	"name": "office-text-extractor",
-	"version": "2.0.0",
+	"version": "3.0.0-beta.1",
 	"description": "Yet another library to extract text from MS Office and PDF files",
 	"keywords": [
 		"text-extraction",
@@ -31,8 +31,7 @@
 		"readme.md",
 		"package.json",
 		"tsconfig.json",
-		"build/",
-		"source/"
+		"build/"
 	],
 	"type": "module",
 	"engines": {
