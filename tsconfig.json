@@ -10,6 +10,7 @@
 		"strictNullChecks": true,
 		"esModuleInterop": true,
 		"moduleResolution": "node16",
+		"declaration": true,
 		"outDir": "build/"
 	},
 	"include": ["source/"]
