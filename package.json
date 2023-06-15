@@ -47,8 +47,7 @@
 		"file-type": "^18.2.1",
 		"got": "12.6.0",
 		"mammoth": "1.6.0",
-		"pdf-parse": "1.1.1",
-		"pnpm": "8.6.1"
+		"pdf-parse": "1.1.1"
 	},
 	"devDependencies": {
 		"@types/node": "18.15.11",
