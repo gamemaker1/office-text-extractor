@@ -5,10 +5,10 @@ import { type Buffer } from 'node:buffer'
 import Xlsx, { utils as sheetUtils } from 'xlsx'
 import { dump as convertToYaml } from 'js-yaml'
 
+import type { TextExtractionMethod } from '../lib.js'
+
 const parseExcelFile = Xlsx.read
 const convertSheetToJson = sheetUtils.sheet_to_json
-
-import type { TextExtractionMethod } from '../lib.js'
 
 export class ExcelExtractor implements TextExtractionMethod {
 	/**
@@ -28,7 +28,7 @@ export class ExcelExtractor implements TextExtractionMethod {
 
 		// Get the names of all the sheets, loop through the sheets and return
 		// nicely formatted text.
-		const sheets = workbook['SheetNames']
+		const sheets = workbook.SheetNames
 		let formattedText = ''
 		for (const sheet of sheets) {
 			// Add the sheet separator to indicate a new sheet has started.
