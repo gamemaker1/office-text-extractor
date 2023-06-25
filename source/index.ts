@@ -2,8 +2,9 @@
 // This file contains the public API for the library.
 
 import { TextExtractor } from './lib.js'
-import { DocExtractor } from './parsers/doc.js'
 import { PdfExtractor } from './parsers/pdf.js'
+import { DocExtractor } from './parsers/doc.js'
+import { ExcelExtractor } from './parsers/excel.js'
 
 /**
  * Create and returns a text extractor instance with the default extraction
@@ -11,7 +12,7 @@ import { PdfExtractor } from './parsers/pdf.js'
  */
 export const getTextExtractor = (): TextExtractor => {
 	const textExtractor = new TextExtractor()
-	const methods = [new PdfExtractor(), new DocExtractor()]
+	const methods = [new PdfExtractor(), new DocExtractor(), new ExcelExtractor()]
 	methods.map((method) => textExtractor.addMethod(method))
 
 	return textExtractor
