@@ -49,10 +49,13 @@
 	"dependencies": {
 		"file-type": "18.2.1",
 		"got": "12.6.0",
+		"js-yaml": "4.1.0",
 		"mammoth": "1.6.0",
-		"pdf-parse": "1.1.1"
+		"pdf-parse": "1.1.1",
+		"xlsx": "0.18.5"
 	},
 	"devDependencies": {
+		"@types/js-yaml": "4.0.5",
 		"@types/node": "18.15.11",
 		"ava": "5.3.0",
 		"np": "7.7.0",
