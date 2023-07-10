@@ -25,7 +25,7 @@ const macro = test.macro(
 
 for (const fileType of ['pdf', 'txt', 'docx', 'pptx', 'xlsx']) {
 	const filePath = `./test/fixtures/docs/${fileType}.${fileType}`
-	const fileUrl = `https://raw.githubusercontent.com/gamemaker1/office-text-extractor/rewrite/test/fixtures/docs/${fileType}.${fileType}`
+	const fileUrl = `https://raw.githubusercontent.com/gamemaker1/office-text-extractor/main/test/fixtures/docs/${fileType}.${fileType}`
 	const fileBuffer = readFileSync(filePath)
 	const fileContent = readFileSync(`./test/fixtures/texts/${fileType}.txt`)
 
