@@ -11,7 +11,8 @@
 		"esModuleInterop": true,
 		"moduleResolution": "node16",
 		"declaration": true,
-		"outDir": "build/"
+		"outDir": "build/",
+		"skipLibCheck": true
 	},
 	"include": ["source/"]
 }
