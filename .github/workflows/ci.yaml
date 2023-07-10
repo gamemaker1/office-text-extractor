@@ -48,7 +48,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org/'
           cache: 'pnpm'
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install && pnpm compile
       - name: Publish package
         run: pnpm publish --no-git-checks
         env:
