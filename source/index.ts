@@ -4,6 +4,7 @@
 import { TextExtractor } from './lib.js'
 import { PdfExtractor } from './parsers/pdf.js'
 import { DocExtractor } from './parsers/doc.js'
+import { PptExtractor } from './parsers/ppt.js'
 import { ExcelExtractor } from './parsers/excel.js'
 
 /**
@@ -12,7 +13,12 @@ import { ExcelExtractor } from './parsers/excel.js'
  */
 export const getTextExtractor = (): TextExtractor => {
 	const textExtractor = new TextExtractor()
-	const methods = [new PdfExtractor(), new DocExtractor(), new ExcelExtractor()]
+	const methods = [
+		new PdfExtractor(),
+		new DocExtractor(),
+		new PptExtractor(),
+		new ExcelExtractor(),
+	]
 	methods.map((method) => textExtractor.addMethod(method))
 
 	return textExtractor

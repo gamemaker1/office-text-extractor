@@ -17,12 +17,13 @@ const macro = test.macro(
 		expected: string | Buffer,
 	) => {
 		const text = await extractor.extractText({ input, type })
+
 		t.is(typeof text, 'string')
 		t.is(text, expected.toString())
 	},
 )
 
-for (const fileType of ['pdf', 'txt', 'docx', 'xlsx']) {
+for (const fileType of ['pdf', 'txt', 'docx', 'pptx', 'xlsx']) {
 	const filePath = `./test/fixtures/docs/${fileType}.${fileType}`
 	const fileUrl = `https://raw.githubusercontent.com/gamemaker1/office-text-extractor/rewrite/test/fixtures/docs/${fileType}.${fileType}`
 	const fileBuffer = readFileSync(filePath)
