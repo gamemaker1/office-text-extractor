@@ -40,13 +40,13 @@ This module also uses:
 - [`js-yaml`](https://www.npmjs.com/package/js-yaml) - to convert JSON into YAML
 - [`file-type`](https://www.npmjs.com/package/file-type) - to detect the mime
   type of files
-- [`decompress`](https://www.npmjs.com/package/decompress) - to unzip files
-- [`read-chunk`](https://www.npmjs.com/package/read-chunk) - to read chunks of
-  data from large files
+- [`fflate`](https://www.npmjs.com/package/fflate) - to unzip files
 
 A big thank you to the contributors of these projects!
 
 ## Installation
+
+#### NodeJs
 
 > **Note**
 >
@@ -67,26 +67,32 @@ To use this in an Node project, install it using `npm`/`pnpm`/`yarn`:
 > yarn add office-text-extractor
 ```
 
-## Usage
+#### Browser
 
-```js
-import { extractText } from 'office-text-extractor'
+To use this package in the browser, fetch it using your preferred CDN:
 
-// Extract the text using `async-await`.
-const text = await extractText('path/to/file')
-console.log(text)
-
-// Extract the text using Promises.
-extractText('path/to/file')
-	.then((text) => console.log(text))
-	.catch((error) => console.error(error))
+```tsx
+<script src="https://unpkg.com/office-text-extractor@latest/build/index.js"></script>
 ```
 
-> **Note**
->
-> There is no support for browser environments yet. If you want to add support,
-> please feel free to
-> [open a pull request](https://github.com/gamemaker1/office-text-extractor/pulls).
+## Usage
+
+```ts
+import { getTextExtractor } from 'office-text-extractor'
+
+// Create a new instance of the extractor.
+const extractor = getTextExtractor()
+
+// Extract text from a URL, file or buffer.
+const location =
+	'https://raw.githubusercontent.com/gamemaker1/office-text-extractor/rewrite/test/fixtures/docs/pptx.pptx'
+const text = await extractor.extractText({
+	input: location, // this can be a file path or a buffer
+	type: 'url', // this is can be 'url', 'file' or 'buffer'
+})
+
+console.log(text)
+```
 
 ## License
 
