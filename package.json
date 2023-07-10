@@ -41,7 +41,7 @@
 	},
 	"scripts": {
 		"compile": "tsc",
-		"test": "run-s test:compile && test:integration",
+		"test": "run-s test:compile test:integration",
 		"test:compile": "tsc --noEmit",
 		"test:quality": "xo source/ test/",
 		"test:integration": "NODE_OPTIONS='--loader=tsx' ava"
