@@ -1,100 +1,89 @@
-# <div align="center"> `office-text-extractor` </div>
+# <div align="center"> office-text-extractor </div>
 
 <div align="center">
-	<img alt="Github Workflow Status" src="https://img.shields.io/github/actions/workflow/status/gamemaker1/office-text-extractor/ci.yaml"/>
-	<img alt="GitHub Stars" src="https://img.shields.io/github/stars/gamemaker1/office-text-extractor"/>
+
+yet another library to extract text from docx, pptx, xlsx, and pdf files.
+
 </div>
-<br>
 
-> Yet another library to extract text from MS Office (`docx`, `pptx`, `xlsx`)
-> and PDF (`pdf`) files.
+## similar libraries
 
-## Similar projects
-
-There are other great projects that do the same job and have inspired this
+there are other great libraries that do the same job and have inspired this
 project, such as:
 
 - [`any-text`](https://github.com/abhinaba-ghosh/any-text)
 - [`officeparser`](https://github.com/harshankur/officeParser)
 - [`textract`](https://www.npmjs.com/package/textract)
 
-### How is this project different?
+however, office-text-extractor has the following differences:
 
-- Parses file based on its mime type, not its file extension.
-- Does not spawn a child process to use a tool installed on the device.
-- Reads and returns text from the file if it contains plain text.
+- parses file based on its **mime type**, not its file extension.
+- **does not spawn** a child process to use a tool installed on the device.
+- reads and returns text from the file if it contains **plain text**.
 
-## Libraries used
+## libraries used
 
-This module uses some amazing existing libraries that perform better than the
+this package uses some amazing existing libraries that perform better than the
 ones that originally existed in this module, and are therefore used instead:
 
-- [`pdf-parse`](https://www.npmjs.com/package/pdf-parse), for parsing PDF files
-- [`xlsx`](https://www.npmjs.com/package/xlsx), for parsing MS Excel files
-- [`mammoth`](https://www.npmjs.com/package/mammoth), for parsing MS Word files
+- [`pdf-parse`](https://www.npmjs.com/package/pdf-parse), for parsing pdf files
+- [`xlsx`](https://www.npmjs.com/package/xlsx), for parsing xlsx files
+- [`mammoth`](https://www.npmjs.com/package/mammoth), for parsing docx files
 
-This module also uses:
+a big thank you to the contributors of these projects!
 
-- [`xml2js`](https://www.npmjs.com/package/xml2js) - to convert the MS Office
-  XML files into JSON
-- [`js-yaml`](https://www.npmjs.com/package/js-yaml) - to convert JSON into YAML
-- [`file-type`](https://www.npmjs.com/package/file-type) - to detect the mime
-  type of files
-- [`fflate`](https://www.npmjs.com/package/fflate) - to unzip files
+## installation
 
-A big thank you to the contributors of these projects!
+#### node
 
-## Installation
-
-#### NodeJs
-
-> **Note**
->
-> This package is now pure ESM (from version 2.0.0 onwards). Please read
+> from version 2.0.0 onwards, this package is pure esm. please read
 > [this article](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c)
 > for a guide on how to ensure your project can import this library.
 
-To use this in an Node project, install it using `npm`/`pnpm`/`yarn`:
+to use office-text-extractor in an Node project, install it using `npm`/`pnpm`/`yarn`:
 
 ```sh
-# Using npm
 > npm install office-text-extractor
-
-# Using pnpm
 > pnpm add office-text-extractor
-
-# Using yarn
 > yarn add office-text-extractor
 ```
 
-#### Browser
+#### browser
 
-To use this package in the browser, fetch it using your preferred CDN:
+to use this package in the browser, fetch it using your preferred cdn:
 
 ```tsx
 <script src="https://unpkg.com/office-text-extractor@latest/build/index.js"></script>
 ```
 
-## Usage
+## usage
+
+an example of using the library to extract text is as follows:
 
 ```ts
+import { readFile } from 'node:fs/promises'
 import { getTextExtractor } from 'office-text-extractor'
 
-// Create a new instance of the extractor.
+// this function returns a new instance of the `TextExtractor` class, with the default
+// extraction methods (docx, pptx, xlsx, pdf) registered.
 const extractor = getTextExtractor()
 
-// Extract text from a URL, file or buffer.
-const location =
-	'https://raw.githubusercontent.com/gamemaker1/office-text-extractor/rewrite/test/fixtures/docs/pptx.pptx'
-const text = await extractor.extractText({
-	input: location, // this can be a file path or a buffer
-	type: 'url', // this is can be 'url', 'file' or 'buffer'
-})
+// extract text from a url, because that's a neat first example :p
+const url = 'https://raw.githubusercontent.com/gamemaker1/office-text-extractor/rewrite/test/fixtures/docs/pptx.pptx'
+const text = await extractor.extractText({ input: url, type: 'url' })
+
+// you can extract text from a file too, like so:
+const path = 'stuff/boring.pdf'
+const text = await extractor.extractText({ input: path, type: 'file' })
+
+// if you have a buffer with the file in it, you can pass that too:
+const buffer = await readFile(path)
+const text = await extractor.extractText({ input: buffer, type: 'buffer' })
 
 console.log(text)
 ```
 
-## License
+## license
 
-This project is licensed under the ISC license. Please see
-[`license.md`](./license.md) for more details.
+this project is licensed under the ISC license. Please see [`license.md`](./license.md)
+for more details.
