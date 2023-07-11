@@ -83,7 +83,40 @@ const text = await extractor.extractText({ input: buffer, type: 'buffer' })
 console.log(text)
 ```
 
+the following is an example of how to create and use your own text extraction method:
+
+```ts
+import { type Buffer } from 'node:buffer'
+import { TextExtractor, type TextExtractionMethod } from 'office-text-extractor'
+
+/**
+ * Extracts text from images.
+ */
+class ImageExtractor implements TextExtractionMethod {
+  /**
+   * The mime types of the file that the extractor accepts.
+   */
+  mimes = ['image/png', 'image/jpeg']
+
+  /**
+   * Extracts text from the image file passed by the user.
+   */
+  apply = async (input: Buffer): Promise<string> {
+    const text = await processImage(input)
+    return text
+  }
+}
+
+// create a new extractor and register our extraction method
+const extractor = new TextExtractor()
+extractor.addMethod(new ImageExtractor())
+
+// then use it like you would normally
+const text = await extractor.extractText({ input: '...', type: '...' }
+console.log(text)
+```
+
 ## license
 
-this project is licensed under the ISC license. Please see [`license.md`](./license.md)
+this project is licensed under the ISC license. please see [`license.md`](./license.md)
 for more details.
