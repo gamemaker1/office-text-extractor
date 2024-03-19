@@ -48,13 +48,10 @@ to use office-text-extractor in an Node project, install it using `npm`/`pnpm`/`
 > yarn add office-text-extractor
 ```
 
-#### browser
+#### ~browser~
 
-to use this package in the browser, fetch it using your preferred cdn:
-
-```tsx
-<script src="https://unpkg.com/office-text-extractor@latest/build/index.js"></script>
-```
+the library currently cannot be used in the browser due to its usage of the `node:buffer`
+library. pull requests that can replace `node:buffer` with a different library are welcome!
 
 ## usage
 
