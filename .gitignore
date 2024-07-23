@@ -1,2 +1,6 @@
+# .gitignore
+# tells git to ignore some files
+
 node_modules/
 build/
+.tsimp/
