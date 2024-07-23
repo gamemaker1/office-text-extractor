@@ -1,7 +1,7 @@
 // source/lib.ts
 // The source code for the library.
 
-import { Buffer } from 'node:buffer'
+import { Buffer } from 'buffer/index.js'
 import { fileTypeFromBuffer as getFileType } from 'file-type'
 import { readFile, fetchUrl } from './util.js'
 

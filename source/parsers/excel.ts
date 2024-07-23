@@ -1,7 +1,7 @@
 // source/parsers/excel.ts
 // The text extracter for Excel files.
 
-import { type Buffer } from 'node:buffer'
+import { type Buffer } from 'buffer/'
 import Xlsx, { utils as sheetUtils } from 'xlsx'
 import { dump as convertToYaml } from 'js-yaml'
 

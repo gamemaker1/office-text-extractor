@@ -1,7 +1,7 @@
 // source/parsers/docx.ts
 // The text extracter for DOCX files.
 
-import { type Buffer } from 'node:buffer'
+import { type Buffer } from 'buffer/'
 import { extractRawText as parseWordFile } from 'mammoth'
 
 import type { TextExtractionMethod } from '../lib.js'
@@ -22,6 +22,7 @@ export class DocExtractor implements TextExtractionMethod {
 	 */
 	apply = async (input: Buffer): Promise<string> => {
 		// Convert the DOCX to text and return the text.
+		// @ts-expect-error: see feross/buffer#353, the types are incomplete.
 		const parsedDocx = await parseWordFile({ buffer: input })
 		return parsedDocx.value
 	}

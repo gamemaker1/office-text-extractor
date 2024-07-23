@@ -2,9 +2,9 @@
 // This file contains the integration test for the library.
 
 import { readFileSync } from 'node:fs'
-import { type Buffer } from 'node:buffer'
 import test from 'ava'
 
+import { type Buffer } from 'buffer/'
 import { getTextExtractor, type InputType } from '../../source/index.js'
 
 const extractor = getTextExtractor()

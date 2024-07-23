@@ -3,7 +3,7 @@
 
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
-import { type Buffer } from 'node:buffer'
+import { type Buffer } from 'buffer/'
 import { unzip } from 'fflate'
 import { parseStringPromise as xmlToJson } from 'xml2js'
 import encoding from 'text-encoding'

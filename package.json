@@ -44,9 +44,10 @@
 		"test": "run-s test:compile test:integration",
 		"test:compile": "tsc --noEmit",
 		"test:quality": "xo source/ test/",
-		"test:integration": "ava"
+		"test:integration": "TSIMP_DIAG=ignore ava"
 	},
 	"dependencies": {
+		"buffer": "6.0.3",
 		"fflate": "0.8.2",
 		"file-type": "19.3.0",
 		"got": "14.4.1",

@@ -1,7 +1,7 @@
 // source/parsers/pdf.ts
 // The text extracter for PDF files.
 
-import { type Buffer } from 'node:buffer'
+import { type Buffer } from 'buffer/'
 // @ts-expect-error There are no types for this package.
 import parsePdf from 'pdf-parse/lib/pdf-parse.js'
 
