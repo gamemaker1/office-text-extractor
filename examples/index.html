@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Office Text Extractor in the Browser</title>
+
+    <style>
+      body {
+        font-family: sans-serif;
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+        line-height: 1.5;
+      }
+
+      #output {
+        white-space: pre-wrap;
+        background: #f4f4f4;
+        padding: 1rem;
+        border: 1px solid #ccc;
+        min-height: 200px;
+        margin-top: 1rem;
+      }
+
+      #status {
+        font-weight: bold;
+        color: #555;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Office Text Extractor in the Browser</h1>
+    <p>Upload a <code>.docx</code>, <code>.pptx</code>, <code>.xlsx</code>, or <code>.pdf</code> to extract its text.</p>
+
+    <input type="file" id="picker" accept=".docx,.pptx,.xlsx,.pdf" />
+
+    <p id="status">Ready.</p>
+    <div id="output">Extracted text will appear here...</div>
+
+    <script type="module">
+      import { getTextExtractor } from './build/browser.js'
+
+      const picker = document.getElementById('picker')
+      const output = document.getElementById('output')
+      const status = document.getElementById('status')
+
+      const extractor = getTextExtractor()
+
+      picker.addEventListener('change', async (event) => {
+        const file = event.target.files[0]
+        if (!file) return
+
+        status.textContent = 'Processing file: ' + file.name + '...'
+        output.textContent = ''
+
+        try {
+          const arrayBuffer = await file.arrayBuffer()
+          const inputData = new Uint8Array(arrayBuffer)
+          const text = await extractor.extractText(inputData)
+          output.textContent = text || 'No text found in file.'
+          status.textContent = 'Extraction complete.'
+        } catch (error) {
+          console.error(error)
+          status.textContent = 'Error extracting text.'
+          output.textContent = error.stack
+        }
+      })
+    </script>
+  </body>
+</html>
+

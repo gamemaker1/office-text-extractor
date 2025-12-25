@@ -10,14 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18, 20, 22]
+        node-version: [22, 24, 25]
     steps:
       - name: clone repository
         uses: actions/checkout@v4
       - name: setup pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: 9
+          version: 10
       - name: setup node ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
@@ -38,11 +38,11 @@ jobs:
       - name: setup pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: 9
-      - name: setup node 22
+          version: 10
+      - name: setup node 24
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           registry-url: 'https://registry.npmjs.org/'
           cache: 'pnpm'
       - name: install dependencies

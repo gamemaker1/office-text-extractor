@@ -25,7 +25,10 @@
 		"url": "https://github.com/gamemaker1/office-text-extractor/issues"
 	},
 	"homepage": "https://github.com/gamemaker1/office-text-extractor#readme",
-	"exports": "./build/index.js",
+	"exports": {
+		".": "./build/index.js",
+		"./web": "./build/browser.js"
+	},
 	"types": "./build/index.d.ts",
 	"files": [
 		"license.md",
@@ -40,36 +43,36 @@
 		"node": ">= 16"
 	},
 	"scripts": {
-		"compile": "tsc",
-		"test": "run-s test:compile test:integration",
-		"test:compile": "tsc --noEmit",
-		"test:quality": "xo source/ test/",
-		"test:integration": "TSIMP_DIAG=ignore ava"
+		"compile": "node scripts/build.js && tsc --emitDeclarationOnly",
+		"test": "run-s test:type test:code",
+		"test:type": "tsc --noEmit",
+		"test:lint": "xo source/ test/",
+		"test:code": "TSIMP_DIAG=ignore ava"
 	},
 	"dependencies": {
-		"buffer": "6.0.3",
 		"fflate": "0.8.2",
-		"file-type": "19.3.0",
-		"got": "14.4.1",
-		"js-yaml": "4.1.0",
-		"mammoth": "1.8.0",
-		"pdf-parse": "1.1.1",
+		"file-type": "21.1.1",
+		"js-yaml": "4.1.1",
+		"mammoth": "1.11.0",
+		"pdf-parse": "2.4.5",
 		"text-encoding": "0.7.0",
 		"xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz",
 		"xml2js": "0.6.2"
 	},
 	"devDependencies": {
 		"@types/js-yaml": "4.0.9",
-		"@types/node": "20.14.11",
-		"@types/text-encoding": "0.0.39",
+		"@types/node": "25.0.3",
+		"@types/text-encoding": "0.0.40",
 		"@types/xml2js": "0.4.14",
-		"ava": "6.1.3",
-		"np": "10.0.7",
+		"ava": "6.4.1",
+		"esbuild": "0.27.2",
+		"esbuild-plugin-polyfill-node": "0.3.0",
+		"np": "10.2.0",
 		"npm-run-all": "4.1.5",
-		"prettier": "3.3.3",
-		"tsimp": "2.0.11",
-		"typescript": "5.5.4",
-		"xo": "0.59.0"
+		"prettier": "3.7.4",
+		"tsimp": "2.0.12",
+		"typescript": "5.9.3",
+		"xo": "1.2.3"
 	},
 	"prettier": {
 		"semi": false,
