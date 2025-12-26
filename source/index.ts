@@ -24,9 +24,4 @@ export const getTextExtractor = (): TextExtractor => {
 	return textExtractor
 }
 
-export type {
-	InputType,
-	ExtractionPayload,
-	TextExtractionMethod,
-	TextExtractor,
-} from './lib.js'
+export type { TextExtractionMethod, TextExtractor } from './lib.js'

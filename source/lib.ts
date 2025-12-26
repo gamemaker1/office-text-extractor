@@ -1,18 +1,22 @@
 // source/lib.ts
 // The source code for the library.
 
-import { Buffer } from 'buffer/index.js'
+import encoding from 'text-encoding'
 import { fileTypeFromBuffer as getFileType } from 'file-type'
 import { readFile, fetchUrl } from './util.js'
 
 /**
- * A method of text extraction.
+ * The way to get the contents of the input file.
  */
 export type InputType = 'buffer' | 'file' | 'url'
-export type ExtractionPayload = { type: InputType; input: string | Buffer }
+export type ExtractionPayload = { type: InputType; input: string | Uint8Array }
+
+/**
+ * A method of text extraction.
+ */
 export type TextExtractionMethod = {
 	mimes: string[]
-	apply: (_: Buffer) => Promise<string>
+	apply: (input: Uint8Array) => Promise<string>
 }
 
 /**
@@ -21,6 +25,10 @@ export type TextExtractionMethod = {
 export class TextExtractor {
 	// The list of methods supported by this instance of the extractor.
 	methods: TextExtractionMethod[] = []
+
+	// An encoder-decoder pair for buffers and strings.
+	encoder = new encoding.TextEncoder()
+	decoder = new encoding.TextDecoder()
 
 	/**
 	 * Registers a new method to this instance of the extractor.
@@ -41,19 +49,19 @@ export class TextExtractor {
 	 */
 	extractText = async ({ input, type }: ExtractionPayload): Promise<string> => {
 		// Turn the input into a buffer containing the file's contents.
-		let preparedInput: Buffer
+		let preparedInput: Uint8Array
 		if (typeof input === 'string') {
 			if (type === 'file') preparedInput = await readFile(input)
 			else if (type === 'url') preparedInput = await fetchUrl(input)
-			else preparedInput = Buffer.from(input)
+			else preparedInput = this.encoder.encode(input)
 		} else {
 			preparedInput = input
 		}
 
 		// Check the mime type of the file. If there is no mime type, it's most
-		// likely a txt/csv files.
+		// likely a text or CSV file. 
 		const mimeDetails = await getFileType(preparedInput)
-		if (!mimeDetails) return preparedInput.toString()
+		if (!mimeDetails) return this.decoder.decode(preparedInput)
 
 		// Find the extractor that can handle that mime type, and call it.
 		const extractor = this.methods.find((method) =>

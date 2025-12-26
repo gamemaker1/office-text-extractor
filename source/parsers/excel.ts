@@ -1,10 +1,8 @@
 // source/parsers/excel.ts
 // The text extracter for Excel files.
 
-import { type Buffer } from 'buffer/'
 import Xlsx, { utils as sheetUtils } from 'xlsx'
 import { dump as convertToYaml } from 'js-yaml'
-
 import type { TextExtractionMethod } from '../lib.js'
 
 const parseExcelFile = Xlsx.read
@@ -22,7 +20,7 @@ export class ExcelExtractor implements TextExtractionMethod {
 	 * @param payload The input and its type.
 	 * @returns The text extracted from the input.
 	 */
-	apply = async (input: Buffer): Promise<string> => {
+	apply = async (input: Uint8Array): Promise<string> => {
 		// Read the contents of the Excel file and convert them to JSON.
 		const workbook = parseExcelFile(input, { type: 'buffer' })
 
@@ -40,8 +38,8 @@ export class ExcelExtractor implements TextExtractionMethod {
 				formattedText += convertToYaml(row)
 					// If the column header is empty, the YAML converter replaces it with '__EMPTY'.
 					// Replace that with just underscore + the column number instead.
-					.replace(/__EMPTY*:/g, ':')
-					.replace(/__EMPTY_\d?:/g, ':')
+					.replaceAll(/__EMPTY*:/g, ':')
+					.replaceAll(/__EMPTY_\d?:/g, ':')
 			}
 		}
 

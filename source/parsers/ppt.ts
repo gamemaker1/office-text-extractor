@@ -3,11 +3,9 @@
 
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
-import { type Buffer } from 'buffer/'
 import { unzip } from 'fflate'
 import { parseStringPromise as xmlToJson } from 'xml2js'
 import encoding from 'text-encoding'
-
 import type { TextExtractionMethod } from '../lib.js'
 
 export class PptExtractor implements TextExtractionMethod {
@@ -26,7 +24,7 @@ export class PptExtractor implements TextExtractionMethod {
 	 * @param payload The input and its type.
 	 * @returns The text extracted from the input.
 	 */
-	apply = async (input: Buffer): Promise<string> => {
+	apply = async (input: Uint8Array): Promise<string> => {
 		const files = await unzipBuffer(input)
 		const slides = []
 
@@ -50,7 +48,7 @@ export class PptExtractor implements TextExtractionMethod {
  */
 type SlideFile = {
 	name: string
-	content: Buffer
+	content: Uint8Array
 }
 
 /**
@@ -59,11 +57,9 @@ type SlideFile = {
  * @param buffer The buffer containing the file.
  * @returns The slide files.
  */
-const unzipBuffer = async (input: Buffer): Promise<SlideFile[]> => {
-	// Convert the buffer to a uint-8 array, and pass it to the unzip function.
-	const zipBuffer = new Uint8Array(input.buffer)
+const unzipBuffer = async (input: Uint8Array): Promise<SlideFile[]> => {
 	const ppt = (await new Promise((resolve, reject) => {
-		unzip(zipBuffer, (error, result) => {
+		unzip(input, (error, result) => {
 			if (error) reject(error)
 			else resolve(result)
 		})

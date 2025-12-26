@@ -40,18 +40,20 @@ a big thank you to the contributors of these projects!
 > [this article](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c)
 > for a guide on how to ensure your project can import this library.
 
-to use office-text-extractor in an Node project, install it using `npm`/`pnpm`/`yarn`:
+to use this package in an node project, install it using a package manager such
+as `npm`/`pnpm`/`bun`:
 
 ```sh
 > npm install office-text-extractor
 > pnpm add office-text-extractor
-> yarn add office-text-extractor
+> bun add office-text-extractor
 ```
 
 #### ~browser~
 
-the library currently cannot be used in the browser due to its usage of the `node:buffer`
-library. pull requests that can replace `node:buffer` with a different library are welcome!
+the library currently cannot be used in the browser due to my inability to figure
+out how to properly bundle the library with its dependencies. pull requests are
+welcome and appreciated!
 
 ## usage
 
@@ -61,21 +63,14 @@ an example of using the library to extract text is as follows:
 import { readFile } from 'node:fs/promises'
 import { getTextExtractor } from 'office-text-extractor'
 
-// this function returns a new instance of the `TextExtractor` class, with the default
-// extraction methods (docx, pptx, xlsx, pdf) registered.
+// this function returns a new instance of the `TextExtractor` class, with the
+// default extraction methods (docx, pptx, xlsx, pdf) registered.
 const extractor = getTextExtractor()
 
-// extract text from a url, because that's a neat first example :p
-const url = 'https://raw.githubusercontent.com/gamemaker1/office-text-extractor/rewrite/test/fixtures/docs/pptx.pptx'
-const text = await extractor.extractText({ input: url, type: 'url' })
-
-// you can extract text from a file too, like so:
-const path = 'stuff/boring.pdf'
-const text = await extractor.extractText({ input: path, type: 'file' })
-
-// if you have a buffer with the file in it, you can pass that too:
+// the extractor instance accepts a `Uint8Array` with the file data in it, which can
+// be fetched from a url using the native `fetch` method, or by reading from a file.
 const buffer = await readFile(path)
-const text = await extractor.extractText({ input: buffer, type: 'buffer' })
+const text = await extractor.extractText(buffer)
 
 console.log(text)
 ```
@@ -83,7 +78,6 @@ console.log(text)
 the following is an example of how to create and use your own text extraction method:
 
 ```ts
-import { type Buffer } from 'node:buffer'
 import { TextExtractor, type TextExtractionMethod } from 'office-text-extractor'
 
 /**
@@ -98,22 +92,22 @@ class ImageExtractor implements TextExtractionMethod {
   /**
    * Extracts text from the image file passed by the user.
    */
-  apply = async (input: Buffer): Promise<string> {
+  apply = async (input: Uint8Array): Promise<string> {
     const text = await processImage(input)
     return text
   }
 }
 
-// create a new extractor and register our extraction method
+// Create a new extractor and register our extraction method.
 const extractor = new TextExtractor()
 extractor.addMethod(new ImageExtractor())
 
-// then use it like you would normally
-const text = await extractor.extractText({ input: '...', type: '...' }
+// Then use it like you would normally.
+const text = await extractor.extractText(...)
 console.log(text)
 ```
 
 ## license
 
-this project is licensed under the ISC license. please see [`license.md`](./license.md)
-for more details.
+this project is licensed under the ISC license. please see
+[`license.md`](./license.md) for more details.
