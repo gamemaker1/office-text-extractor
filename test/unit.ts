@@ -9,11 +9,11 @@ const { TextEncoder, TextDecoder } = encoding
 const getTextExtractor = async (mocks = {}) => {
 	const { TextExtractor } = await esmock('../source/lib.js', {
 		'../source/util.js': {
-			readFile: mocks.readFile || (async () => new Uint8Array()),
-			fetchUrl: mocks.fetchUrl || (async () => new Uint8Array()),
+			readFile: mocks.readFile ?? (async () => new Uint8Array()),
+			fetchUrl: mocks.fetchUrl ?? (async () => new Uint8Array()),
 		},
 		'file-type': {
-			fileTypeFromBuffer: mocks.getFileType || (async () => undefined),
+			fileTypeFromBuffer: mocks.getFileType ?? (async () => undefined),
 		},
 	})
 	return new TextExtractor()
@@ -91,6 +91,15 @@ test('method overrides', async (t) => {
 	t.is(result, 'yay')
 })
 
+test('method chaining', async (t) => {
+	const extractor = await getTextExtractor()
+	const instance = extractor.addMethod({
+	  mimes: ['guide/galaxy'], apply: async () => ''
+	})
+
+	t.is(instance, extractor)
+})
+
 test('error on missing method', async (t) => {
 	const extractor = await getTextExtractor({
 		getFileType: async () => ({ mime: 'image/png' }),
@@ -102,11 +111,24 @@ test('error on missing method', async (t) => {
 	t.regex(error?.message, /image\/png/)
 })
 
-test('method chaining', async (t) => {
-	const extractor = await getTextExtractor()
-	const instance = extractor.addMethod({
-	  mimes: ['guide/galaxy'], apply: async () => ''
+test('error on missing node:fs', async (t) => {
+	const { readFile } = await esmock('../source/util.js', {
+		'node:fs/promises': null
 	})
 
-	t.is(instance, extractor)
+	const error = await t.throwsAsync(readFile('fairy.tale'))
+	t.regex(error?.message, /node:fs/)
+})
+
+test('error on missing fetch', async (t) => {
+	const { fetchUrl } = await import('../source/util.js')
+
+	const originalFetch = globalThis.fetch
+	// @ts-ignore
+	globalThis.fetch = undefined
+
+	const error = await t.throwsAsync(fetchUrl('https://example.com'))
+	t.regex(error?.message, /fetch/)
+
+	globalThis.fetch = originalFetch
 })
