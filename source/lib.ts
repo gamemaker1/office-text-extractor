@@ -64,7 +64,7 @@ export class TextExtractor {
 		if (!mimeDetails) return this.decoder.decode(preparedInput)
 
 		// Find the extractor that can handle that mime type, and call it.
-		const extractor = this.methods.find((method) =>
+		const extractor = this.methods.findLast((method) =>
 			method.mimes.includes(mimeDetails.mime),
 		)
 		if (!extractor?.apply) {
