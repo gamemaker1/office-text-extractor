@@ -1,4 +1,4 @@
-// test/integration/lib.ts
+// test/integration.ts
 // This file contains the integration test for the library.
 
 import { readFileSync } from 'node:fs'
