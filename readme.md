@@ -63,14 +63,21 @@ an example of using the library to extract text is as follows:
 import { readFile } from 'node:fs/promises'
 import { getTextExtractor } from 'office-text-extractor'
 
-// this function returns a new instance of the `TextExtractor` class, with the
-// default extraction methods (docx, pptx, xlsx, pdf) registered.
+// this function returns a new instance of the `TextExtractor` class, with the default
+// extraction methods (docx, pptx, xlsx, pdf) registered.
 const extractor = getTextExtractor()
 
-// the extractor instance accepts a `Uint8Array` with the file data in it, which can
-// be fetched from a url using the native `fetch` method, or by reading from a file.
+// extract text from a url, because that's a neat first example :p
+const url = 'https://raw.githubusercontent.com/gamemaker1/office-text-extractor/rewrite/test/fixtures/pptx.pptx'
+const text = await extractor.extractText({ input: url, type: 'url' })
+
+// you can extract text from a file too, like so:
+const path = 'stuff/boring.pdf'
+const text = await extractor.extractText({ input: path, type: 'file' })
+
+// if you have a buffer (Uint8Array) with the file in it, you can pass that too:
 const buffer = await readFile(path)
-const text = await extractor.extractText(buffer)
+const text = await extractor.extractText({ input: buffer, type: 'buffer' })
 
 console.log(text)
 ```
@@ -98,11 +105,11 @@ class ImageExtractor implements TextExtractionMethod {
   }
 }
 
-// Create a new extractor and register our extraction method.
+// create a new extractor and register our extraction method.
 const extractor = new TextExtractor()
 extractor.addMethod(new ImageExtractor())
 
-// Then use it like you would normally.
+// then use it like you would normally.
 const text = await extractor.extractText(...)
 console.log(text)
 ```
